@@ -1,0 +1,12 @@
+<div id="skillRating" class="spacing__content__small text__center" (mouseleave)="setRating(initialRating)">
+  <ng-template ngFor let-rating [ngForOf]="ratingRange"><button
+        class="ui-button skill__management__rating button__toggle font__large"
+        (mouseenter)="setRating(rating)"
+        (click)="initialRating = rating.toString()"
+        [ngClass]="{ selected: rating <= transformToNumber(currentRating) ? true : false }"
+        [id]="rating + '_ratingButton'">
+        <span class="icon icon-Myentertainment"></span>
+  </button></ng-template>
+</div>
+
+<div class="font__xhuge spacing__content text__center">{{ currentRating }}</div>

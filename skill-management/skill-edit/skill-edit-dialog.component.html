@@ -1,0 +1,9 @@
+<div mat-dialog-title>{{'SKILL_EDIT_DIALOG.TITLE' | translate:{ skillName: skillName,
+  agentName: agent.person.firstName + ' ' + agent.person.lastName} }}</div>
+<div mat-dialog-content>
+  <dof-skill-rating (changeRating)="changeRating($event)" [currentRating]="currentRating"></dof-skill-rating>
+</div>
+<div mat-dialog-actions>
+  <button class="ui-button ui-button-outline" id="cancelSkillModal" type="button" mat-dialog-close>{{ 'CANCEL' | translate }}</button>
+  <button class="ui-button" type="button" id="confirmSkillAction" (click)="confirm()">{{ 'CONFIRM' | translate }}</button>
+</div>

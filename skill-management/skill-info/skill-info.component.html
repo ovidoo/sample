@@ -1,0 +1,11 @@
+<button class="ui-button button__toggle button__toggle__large"
+        [ngClass]="{ selected: type !== skillsType.Bizz ? focus : false,
+        'button__toggle__neutral': type === skillsType.Bizz }"
+        (click)="actionSkill.emit(null)"
+        [id]="agentId + '_' + type + 'SkillButton'">
+  <span class="star-stack skill__management__rating font__large">
+    <span class="icon icon-Edit" [hidden]="!editingSkills"></span>
+    <span class="icon icon-Myentertainment" [hidden]="editingSkills"></span>
+    {{ rating }}
+  </span>
+</button>

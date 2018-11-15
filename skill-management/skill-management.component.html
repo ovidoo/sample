@@ -1,0 +1,31 @@
+<!--<dof-header [model]="getHeaderName()" [enableAdminButton]="false"></dof-header>-->
+<div class="grid__container" id="skillManagement">
+  <div class="ui-g skill__management__row">
+    <div class="ui-g-6"></div>
+    <div class="ui-g-2 skill__management__head">{{ 'SALES' | translate }}</div>
+    <div class="ui-g-2 skill__management__head">{{ 'SERVICING' | translate }}</div>
+    <div class="ui-g-2 skill__management__head">{{ 'BIZZ' | translate }}</div>
+  </div>
+
+  <div *ngFor="let agent of (agents$ | async)">
+    <div *ngIf="agent.person" class="ui-g skill__management__row">
+      <div class="ui-g-6 spacing__reset"><div class="font__xlarge vertical__align">{{ agent.person.firstName + ' ' + agent.person.lastName }}</div></div>
+      <div class="ui-g-2 spacing__reset" *ngFor="let type of skillsList">
+        <dof-skill-info
+          [agentId]="agent.perId"
+          [editingSkills]="editingSkills"
+          [type]="type"
+          [focus]="isSkillFocus(type, agent)"
+          [rating]="getSkillRating(type, agent)"
+          (actionSkill)="actionSkill(agent, type)">
+        </dof-skill-info>
+      </div>
+    </div>
+  </div>
+
+  <div class="text__right" *ngIf="(agents$ | async)?.length > 0">
+      <button class="ui-button ui-button-outline" (click)="enableSkillsEditing()" [ngClass]="{edit: editingSkills}" [id]="editingSkills ? 'disableEditSkillButtonTop' : 'enableEditSkillButtonTop'">
+        {{editingSkills ? ('SKILL_MANAGEMENT_PAGE.END_EDIT' | translate) : ('SKILL_MANAGEMENT_PAGE.START_EDIT' | translate) }}
+      </button>
+    </div>
+</div>
